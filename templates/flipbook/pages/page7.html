@@ -1,0 +1,58 @@
+
+
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'deploy/css/flipbook.style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'deploy/css/font-awesome.css' %}">
+<script src="{% static 'deploy/js/flipbook.min.js' %}"></script>
+
+<script type="text/javascript">
+
+    
+    $(document).ready(function () {
+    {% for book in books%}
+		$("#container{{book.id}}").flipBook({
+            pdfUrl:"/media/{{book.pdf}}",
+			lightBox:true,
+			lightBoxOpened:false
+        });
+		{% endfor %}
+
+    })
+    
+</script>
+<h3 style="text-align: center; margin: 50px 0px 10px 0px;">Esoteric Library</h3>
+<div style="margin: 0px 50px; height: 80%; overflow-y: scroll; padding-top: 10px; padding-bottom: 10px; text-align: center; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+<div style="padding-top: 10px; padding-bottom: 10px; text-align: center; display: flex; flex-wrap: wrap; justify-content: center;">
+
+{% for book in books%}
+<div id="container{{book.id}}" class="flip-card" class="mb-4" type="button" class="btn btn-warning mb-3">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="/media/{{book.thumbnail}}" alt="Avatar" style="width:150px;height:150px;">
+    </div>
+    <div class="flip-card-back" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <h6>{{book.name}}</h6>
+      {% if request.user.is_authenticated %} 
+      <div class="mb-2">
+        <a href="/cart/{{book.id}}"><button class="btn btn-success btn-sm" title="Add to Cart"><i class="fas fa-cart-plus"></i></button></a>
+        <a href="/wishlist/{{book.id}}"><button class="btn btn-success btn-sm" title="Add to Wishlist"><i class="fas fa-heart"></i></button></a>
+      </div>
+      <a href="/media/{{book.pdf}}"><button class="btn btn-success btn-sm">Download</button></a>
+      {% endif %}
+    </div>
+    
+  </div>
+</div>
+
+
+
+{% endfor %}
+
+</div>
+{% if n == 20 %}
+<div>
+  <a href="/library"><button class="btn btn-success" >See More</button></a>
+</div>
+{% endif %}
+</div>

@@ -1,0 +1,30 @@
+{% extends 'accounts/base.html' %}
+{% block body %}
+    <table class="table table-light text-center">
+  <thead>
+    <tr>
+      <th scope="col">Thumbnail</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <th><img src="/media/{{book.thumbnail}}" style="width:150px;height:150px;"></th>
+      <td>{{book.name}}</td>
+      <td>${{book.price}}</td>
+      <td><a href="/cart/{{book.id}}/remove"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Remove</button></a></td>
+    </tr>
+    
+    {% endfor %}
+    <tr>
+      <td colspan="4">Total = ${{total}}</td>
+    </tr
+    <tr>
+      <td colspan="4"><a href="#"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Checkout</button></a></td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

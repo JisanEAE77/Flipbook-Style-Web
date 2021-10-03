@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'deploy/css/flipbook.style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'deploy/css/font-awesome.css' %}">
+
+<script src="{% static 'deploy/js/flipbook.min.js' %}"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+		$("#container").flipBook({
+            pdfUrl:"{% static 'deploy/pdf/book2.pdf' %}",
+			lightBox:true,
+			lightBoxOpened:false
+        });
+		
+
+    })
+</script>
+
+</head>
+
+<body>
+
+
+<h3 style="text-align: center; margin: 50px 0px;">Esoteric Library</h3>
+<form style="margin-left: 70px !important;">
+  <label>Filter:</label>
+  <select> 
+
+    <option>Sort By Date Ascending</opton>
+    <option>Sort By Date Decending</opton>
+    <option>Sort By Title Ascending</opton>
+    <option>Sort By Title Decending</opton>
+  </select>
+</form>
+<div style="padding-top: 10px; padding-bottom: 10px; text-align: center; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+
+{% for book in books%}
+<div id="container" class="flip-card" class="mb-4" type="button" class="btn btn-warning mb-3" data-toggle="modal" data-target="#exampleModals">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="/media/{{book.thumbnail}}" alt="Avatar" style="width:150px;height:150px;">
+    </div>
+    <div class="flip-card-back">
+      <h1>Title</h1> 
+      <p>Article</p> 
+      <p>Read Blog</p>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+
+
+
+</div>
+
+</body>
+
+</html>

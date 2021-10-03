@@ -1,0 +1,848 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+{% load static %}
+<script type="text/javascript" src="{% static 'flipbook/extras/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'flipbook/extras/jquery-ui.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'flipbook/lib/hash.js' %}"></script>
+<script type="text/javascript" src="{% static 'flipbook/lib/turn.js' %}"></script>
+<script type="text/javascript" src="{% static 'flipbook/js/steve-jobs.js' %}"></script>
+<link rel="stylesheet" href="{% static 'flipbook/css/steve-jobs.css' %}">
+<link rel="stylesheet" href="{% static 'flipbook/css/jquery.ui.css' %}">
+<link rel="stylesheet" href="{% static 'flipbook/css/bootstrap.min.css' %}">
+<script src="{% static 'flipbook/extras/bootstrap.min.js' %}"></script>
+<script src="{% static 'flipbook/extras/bootstrap.bundle.min.js' %}"></script>
+
+{% comment %} <style>
+
+.modal {
+  padding: 0 !important; // override inline padding-right added from js
+}
+.modal .modal-dialog {
+  width: 100%;
+  max-width: none;
+  height: 100vh !important;
+  margin: 0 !important;
+}
+.modal .modal-content {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+.modal .modal-body {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+  	overflow-y: auto;
+}
+</style> {% endcomment %}
+</head>
+<body>
+
+<div id="canvas">
+	<div id="book-zoom">
+		<div class="sj-book">
+			<div depth="2" class="hard"> <div class="side"></div> </div>
+			<div depth="2" class="hard front-side"> <div class="depth"></div> </div>
+			<div class="own-size"></div>
+			<div class="own-size even"></div>
+			<div class="hard fixed back-side p13"> <div class="depth"></div> </div>
+			<div class="hard p14"></div>
+		</div>
+	</div>
+	
+</div>
+<!-- Modal -->
+{% comment %} <div class="modal fade" id="exampleModals" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="width: 100v">
+  <div class="modal-dialog" role="document"  style="height: 90vh; width: 100vw; overflow-y: scroll;">
+    <div class="modal-content">
+      
+      <div class="modal-body" style="overflow: hidden">
+        <iframe src="http://flowpaper.com/flipbook/https://flowpaper.com/example.pdf" width="70%" height="800" style="border: none;" allowFullScreen>
+</iframe>
+
+      </div>
+	  <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+      
+    </div>
+  </div>
+</div> {% endcomment %}
+
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="width: 100v">
+  <div class="modal-dialog" role="document"  style="height: 90vh; width: 100vw; overflow-y: scroll;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+	<div class="mb-5">
+		<div>
+		<div class="card">
+			<h2>Family Affair: Shaking The Family Tree Of Jack Brooksbank</h2>
+			<img class="card-img" src="https://www.esotericcuriosa.com/wp-content/uploads/2021/03/DUI_BsmXcAAIRip-300x253.jpg" alt="Bologna" height="100%" width="100%">
+			<div class="card-body">>
+			<small class="text-muted cat">
+				<i class="far fa-clock text-info"></i> 30 minutes
+				<i class="fas fa-users text-info"></i> 4 portions
+			</small>
+			<p class="card-text">If one were to hop into the Esoteric time machine that is “The Esoteric Curiosa,” one might remember a post from August of 2010, and if memory fails, here is the hyperlink for your convenience; http://theesotericcuriosa.blogspot.com/2010/08/cousin-recent-romance-of-princess.html At the time, I detailed the close counsanguity that existed between Princess Eugenie and her new beau, Jack Brooksbank, or to clarify, the most recent of their overlapping antecedents.
+
+Flash forward almost seven and a-half years later and fresh upon the heels of their engagement, I am posting a glimpse into the ancestral profile of the newest member to join the House of Windsor. Compared against the most recent marriages and engagements of the higher profile members of the royal family, namely Prince William and Prince Harry, we find that their cousin has chosen to stay within the realm of “the establishment” from which to choose her mate.
+
+Jack Brooksbank, although far from springing directly from gilt edged aristocracy, nonetheless has several descents from some of the first families of Burke’s and Debretts’. As a family the Brooksbank’s possess an established record of almost 750 years, granting all this, Jack’s gg-grandfather, Sir Edward Clitherow Brooksbank, 1st Bt. of Healaugh Manor, did not receive his baronetcy until 1919, therefore making the family not only lower on the aristo pecking order, but rather of a newer vintage in comparison. Comparatively, Jack owes most of his more glamorous descents from the peerage to his paternal grandmother, Celia Dorothy Coke; a granddaughter of the 2nd Earl of Leicester, with close connections to the royal family; and a gateway ancestor to such historical figures as the infamous, Georgiana, Duchess of Devonshire, King Charles II, Bess of Hardwick, the requisite Plantagenêt descent from Edward III; and countless more; without a coal miner, flight attendant or elevator operator in sight. Notwithstanding, and to off-set his posher side, Jack Brooksbank does possess ancestors closer to the common man, his g-grandfather Giles Fendall Newton, OBE, a veteran solider from WWI, was president of the Cape Asbestos Company, Ltd; while his grandfather Michael Anthony Fendall Newton was a director as well of the same company.  Great-great grandfather, Harry Lawson Webster Levy-Lawson, 1st Viscount Burnham, although a peer, was the manager and owner of the Daily Telegraph; and a paternal grandson of a London Jew who established a printing company in Shoe Lane, Fleet Street, in 1850’s London; while maternally Lord Burnham was the grandson of Benjamin Nottingham Webster an English actor-manager and dramatist on the Victorian stage. In a nod to the “grease paint” and on an interesting note, the former Levy-Lawson estate of Hall Barn, was used for filming of the movie Gosford Park . . .
+
+That said, the ancestral chart below should be a convenient starting point for those interested in further genealogical pursuits, and obtaining stories with regard to his ancestors.
+
+NR
+
+Ancestry of Jack Brooksbank
+
+1          Jack Christopher Stamp Brooksbank
+
+3.V.1986
+
+Parents
+
+2          George Edward Hugh Brooksbank
+
+8.II.1949
+
+3          Nicola Newton
+
+1953
+
+Grandparents
+
+4          Stamp Godfrey Brooksbank
+
+14.IV.1922+13.IV.2017
+
+5          Celia Dorothy Coke
+
+3.VII.1919+6.VI.1996
+
+6          Michael Anthony Fendall Newton
+
+7.VII.1923+5.VI.2006
+
+7          Joanna K.H. Holland
+
+1926
+
+Great Grandparents
+
+8          Lt.-Col. Edward York Brooksbank
+
+16.XII.1888+21.X.1935
+
+9          Hazel Lynall Thomas
+
+15.XI.1883+XII.1968
+
+10        Major Hon. Sir John Spencer Coke
+
+30.IX.1880+23.XII.1957
+
+11        Hon. Dorothy Olive Lawson
+
+26.I.1885+22.XII.1937
+
+12        Giles Fendall Newton, MBE
+
+27.V.1891+8.IV.1974
+
+13        Mary Cicely Meyrick
+
++ d. 30.XI.1972
+
+14        Godfrey Holland
+
+1872+1966
+
+15        Violet Houssemayne Du Boulay
+
+20.III.1892+24.XII.1979
+
+Great-Great Grandparents
+
+16        Sir Edward Clitherow Brooksbank, 1st Bt.
+
+24.XI.1858+24.XI.1943
+
+17        Katherine Christina Elizabeth Graham Lang
+
+15.III.1863+22.IV.1939
+
+18        Henry Brockholes Thomas
+
+19.VII.1842+31.VII.1901
+
+19        Helen Elizabeth Taylor
+
+2.II.1849+15.III.1935
+
+20        Thomas William Coke, 2nd Earl of Leicester
+
+26.XII.1822+24.I.1909
+
+21        Hon. Georgina Caroline Cavendish
+
+4.II.1852+26.II.1937
+
+22        Harry Lawson Webster Levy-Lawson, 1st Viscount Burnham
+
+            18.XII.1862+20.VII.1933
+
+23        Olive de Bathe
+
+20.XI.1862+20.XII.1939
+
+24        William Latham Newton
+
+12.I.1862+16.I.1948
+
+25        Violet Harrison
+
+26        Brig.-Gen. Sir Frederick Charlton Meyrick, 2nd Bt.
+
+7.VII.1862+23.II.1932
+
+27        Mary Emma Baker-Cresswell
+
+1878+26.VIII.1970
+
+28        Sir Arthur Holland
+
+13.VII.1843+8.I.1928
+
+29        Mary Catherine Barbara Schwann
+
+X.1842+19.IV.1940
+
+30        Woodforde George Houssemayne Du Boulay
+
+18.XII.1848+6.IX.1923
+
+31        Rose Hawkins
+
+16.VIII.1859+27.XI.1932
+
+Great-Great-Great Grandparents
+
+32        Edward Brooksbank
+
+22.VII.1826+2.XII.1916
+
+33        Lucy Mary York
+
+1838+21.II.1893
+
+34        Hugh Morris Lang
+
+30.III.1817+22.IV.1900
+
+35        Margaret Graham
+
+1822+
+
+36        Griffith Thomas
+
+1809+20.IX.1888
+
+37        Martha Brockholes
+
+1808+XII.1891
+
+38        Thomas Edward Taylor
+
+3.VI.1813+13.X.1890
+
+39        Anne Elizabeth Hodgetts
+
+16.VII.1816+ 5.VI.1892
+
+40        Thomas William Coke, 1st Earl of Leicester
+
+6.V.1754+30.VI.1842
+
+41        Lady Anne Amelia Keppel
+
+1803+22.VII.1844
+
+42        William George Cavendish, 2nd Baron Chesham
+
+29.X.1815+26.VI.1882
+
+43        Henrietta Frances Lascelles
+
+ II.1830+21.V.1884
+
+44        Edward Levy-Lawson, 1st Baron Burnham
+
+28.XII.1833+9.I.1916
+
+45        Harriette Georgiana Webster
+
+23.IV.1838+25.V.1897
+
+46        Gen. Sir Henry Perceval de Bathe, 4th Bt.
+
+19.VI.1823+5.I.1907
+
+47        Charlotte Clare
+
+1832+21.VII.1928
+
+48        John Fendall Newton
+
+1812+26.X.1877
+
+49        Harriet Fendall
+
+28.VII.1826+3.II.1913
+
+50        Richard Harrison
+
+51        Untraced
+
+52        Sir Thomas Charlton Meyrick, 1st Bt.
+
+14.III.1837+30.VII.1921
+
+53        Mary Rhoda Hill
+
++ d. 4.X.1924
+
+54        Major Oswin Cumming Baker-Cresswell
+
++ d. 26.II.1886
+
+55        Emma Sophia Georgiana Denman
+
++ d. 31.I.1939
+
+56        Charles Holland
+
+12.VI.1799+5.II.1870
+
+57        Elizabeth Gaskell
+
+21.IX.1812+8.III.1892
+
+58        John Frederic Schwann
+
+29.III.1799+22.IV.1882
+
+59        Henrietta Kell
+
+1811+25.III.1877
+
+60        Thomas Houssemayne du Boulay
+
+14.II.1804+14.VI.1872
+
+61        Harriet Ann Drake Brockman
+
+3.V.1805+07.V.1877
+
+62        Charles Henry Hawkins
+
+27.VI.1818+2.XII.1898
+
+63        Sarah Jane Bawtree
+
+VII.1824+17.VIII.1899
+
+Great-Great-Great-Great Grandparents
+
+64        Reverend Edward Hawke Brooksbank
+
+19.XII.1789+5.VIII.1883
+
+65        Hannah Heywood
+
++ d. 29.XII.1846
+
+66        Edward York
+
+6.I.1802+26.I.1861
+
+67        Penelope Sykes
+
+1810+VI.1873
+
+68        Robert Franklyn Lang
+
+1764+30.V.1825
+
+69        Jessie Montgomerie
+
+70-75   Untraced
+
+76        Thomas Taylor
+
+23.VI.1785+1.XI.1870
+
+77        Lucy Thornely
+
+22.X.1782+19.I.1824
+
+78        Bartholomew Hodgetts
+
+1789+III.1841
+
+79        Sarah Jackson
+
+1791+XII.1857
+
+80        Wenman Roberts (Coke)
+
+7.I.1716/7+11.IV.1776
+
+81        Elizabeth Chamberlayne
+
++ d. 31.XII.1810
+
+82        William Charles Keppel, 4th Earl of Albemarle
+
+14.V.1772+30.X.1849
+
+83        Hon. Elizabeth Southwell
+
+11.I.1776+14.XI.1817
+
+84        Charles Compton Cavendish, 1st Baron Chesham
+
+28.VIII.1793+10.XI.1863
+
+85        Lady Catherine Susan Gordon
+
+22.XII.1792+14.XII.1866
+
+86        Rt. Hon. William Saunders Sebright Lascelles
+
+29.X.1798+2.VII.1851
+
+87        Lady Caroline Georgiana Howard
+
++ d. 27.XI.1881
+
+88        Joseph Moses Levy
+
+15.XII.1811+13.X.1888
+
+89        Esther Cohen
+
+1816+2.III.1884
+
+90        Benjamin Nottingham Webster
+
+3.IX.1797+3.VII.1882
+
+91        Elizabeth Moon
+
+92        Sir William Plunkett de Bathe, 3rd Bt.
+
+26.XII.1793+10.III.1870
+
+93        Mary Earle
+
++ d. 14.IX.1854
+
+94        William Clare
+
+95        Untraced
+
+96        Rev. John Farmer Newton
+
++ d. 23.XI.1880
+
+97        Elizabeth Kent
+
+1793+1850
+
+98        Rev. John Fendall
+
+1793+18.VI.1862
+
+99        Martha Theodosia Blacker
+
+11.VI.1798+17.II.1878
+
+100-103 Untraced
+
+104      St. John Chiverton Charlton
+
+29.V.1799+3.II.1873
+
+105      Jane Sophia Meyrick
+
++ d. 26.III.1837
+
+106      Colonel Richard Frederick Hill
+
+14.I.1804+9.I.1890
+
+107      Maria Jane Bringhurst
+
++ d. 13.X.1880
+
+108      Oswin Addison Baker-Cresswell
+
++ d. 6.III.1856
+
+109      Anne Seymour Conway Gordon-Cumming
+
++ d. 3.VI.1858
+
+110      Hon. Richard Denman
+
+13.I.1814+19.III.1887
+
+111      Emma Jones
+
++ d. 2.I.1904
+
+112      Samuel Holland
+
+1768+28.IX.1851
+
+113      Catherine Menzies
+
+28.IV.1771+VII.1847
+
+114      William Gaskell
+
+28.III.1777+15.III.1819
+
+115      Margaret Jackson
+
+1781+12.I.1850
+
+116      Johann Friedrich Schwan
+
+117      Catherine Barbara Platz
+
+118      Rev. Robert Kell
+
+119      Untraced
+
+120      François Jacques du Boulay
+
+12.VI.1759+28.X.1828
+
+121      Elizabeth Paris
+
+17.VIII.1775+19.VII.1814
+
+122      Rev. Julius Drake Brockman
+
+24.X.1768+7.IX.1849
+
+123      Harriet Locke
+
+1771+1815
+
+124      William Hawkins
+
+18.III.1798+18.II.1868
+
+125      Mary Ann Warwick
+
+10.V.1795+1834
+
+126      John Bawtree
+
+1794+21.XI.1873
+
+127      Mary Postle
+
+1797+28.II.1875</p>
+			</div>
+			<div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+			<div class="views">Oct 20, 12:45PM
+			</div>
+			<div class="stats">
+				<i class="far fa-eye"></i> 1347
+				<i class="far fa-comment"></i> 12
+			</div>
+			
+			</div>
+		</div>
+		</div>
+	</div>
+	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+<script type="text/javascript">
+
+function loadApp() {
+	
+	var flipbook = $('.sj-book');
+
+	// Check if the CSS was already loaded
+	
+	if (flipbook.width()==0 || flipbook.height()==0) {
+		setTimeout(loadApp, 10);
+		return;
+	}
+
+	// Mousewheel
+
+	/*$('#book-zoom').on('wheel', function(event) {
+	    event = event.originalEvent;
+		
+		var data = $(this).data(),
+			flipbook = $('.sj-book'),
+			view = flipbook.turn('view', page).filter( (page) => page != 0 ),
+			page = flipbook.turn('page'),
+			delay = 500; //ms
+		
+		if(typeof(data.scrollTimer)==='undefined') data.scrollTimer = 0;
+
+		if(data.scrollTimer > event.timeStamp) return;
+
+		data.scrollTimer = event.timeStamp + delay;
+
+		if(event.deltaY > 0) page = Math.max(...view) + 1;
+		if(event.deltaY < 0) page = Math.min(...view) - 1;
+		
+		page = Math.max(Math.min(flipbook.turn('pages'),page),1);
+		
+		flipbook.turn('page', page);
+
+	});*/
+
+	// Slider
+
+	/*$( "#slider" ).slider({
+		min: 1,
+		max: 100,
+
+		start: function(event, ui) {
+
+			if (!window._thumbPreview) {
+				_thumbPreview = $('<div />', {'class': 'thumbnail'}).html('<div></div>');
+				setPreview(ui.value);
+				_thumbPreview.appendTo($(ui.handle));
+			} else
+				setPreview(ui.value);
+
+			moveBar(false);
+
+		},
+
+		slide: function(event, ui) {
+
+			setPreview(ui.value);
+
+		},
+
+		stop: function() {
+
+			if (window._thumbPreview)
+				_thumbPreview.removeClass('show');
+			
+			$('.sj-book').turn('page', Math.max(1, $(this).slider('value')*2 - 2));
+
+		}
+	});*/
+
+
+	// URIs
+	
+	Hash.on('^page\/([0-9]*)$', {
+		yep: function(path, parts) {
+
+			var page = parts[1];
+
+			if (page!==undefined) {
+				if ($('.sj-book').turn('is'))
+					$('.sj-book').turn('page', page);
+			}
+
+		},
+		nop: function(path) {
+
+			if ($('.sj-book').turn('is'))
+				$('.sj-book').turn('page', 1);
+		}
+	});
+
+	// Arrows
+
+	$(document).on('keydown', function(e){
+
+		var previous = 37, next = 39;
+
+		switch (e.keyCode) {
+			case previous:
+
+				$('.sj-book').turn('previous');
+
+			break;
+			case next:
+				
+				$('.sj-book').turn('next');
+
+			break;
+		}
+
+	});
+
+
+	// Flipbook
+
+	flipbook.on(($.isTouch) ? 'touchend' : 'click', zoomHandle);
+
+	flipbook.turn({
+		elevation: 100,
+		acceleration: true,
+		autoCenter: true,
+		gradients: true,
+		duration: 1000,
+		pages: 14,
+		when: {
+			turning: function(e, page, view) {
+				
+				var book = $(this),
+					currentPage = book.turn('page'),
+					pages = book.turn('pages');
+
+				if (currentPage>3 && currentPage<pages-3) {
+				
+					if (page==1) {
+						book.turn('page', 2).turn('stop').turn('page', page);
+						e.preventDefault();
+						return;
+					} else if (page==pages) {
+						book.turn('page', pages-1).turn('stop').turn('page', page);
+						e.preventDefault();
+						return;
+					}
+				} else if (page>3 && page<pages-3) {
+					if (currentPage==1) {
+						book.turn('page', 2).turn('stop').turn('page', page);
+						e.preventDefault();
+						return;
+					} else if (currentPage==pages) {
+						book.turn('page', pages-1).turn('stop').turn('page', page);
+						e.preventDefault();
+						return;
+					}
+				}
+
+				updateDepth(book, page);
+				
+				if (page>=2)
+					$('.sj-book .p2').addClass('fixed');
+				else
+					$('.sj-book .p2').removeClass('fixed');
+
+				if (page<book.turn('pages'))
+					$('.sj-book .p13').addClass('fixed');
+				else
+					$('.sj-book .p13').removeClass('fixed');
+
+				Hash.go('page/'+page).update();
+					
+			},
+
+			turned: function(e, page, view) {
+
+				var book = $(this);
+
+				if (page==2 || page==3) {
+					book.turn('peel', 'br');
+				}
+
+				updateDepth(book);
+				
+				$('#slider').slider('value', getViewNumber(book, page));
+
+				book.turn('center');
+
+			},
+
+			start: function(e, pageObj) {
+		
+				moveBar(true);
+
+			},
+
+			end: function(e, pageObj) {
+			
+				var book = $(this);
+
+				updateDepth(book);
+
+				setTimeout(function() {
+					
+					$('#slider').slider('value', getViewNumber(book));
+
+				}, 1);
+
+				moveBar(false);
+
+			},
+
+			missing: function (e, pages) {
+
+				for (var i = 0; i < pages.length; i++) {
+					addPage(pages[i], $(this));
+					
+				}
+
+			}
+		}
+	});
+
+
+	//$('#slider').slider('option', 'max', numberOfViews(flipbook));
+
+	flipbook.addClass('animated');
+
+	// Show canvas
+
+	$('#canvas').css({visibility: ''});
+}
+
+// Hide canvas
+
+$('#canvas').css({visibility: 'hidden'});
+
+// Load turn.js
+
+loadApp()
+
+</script>
+
+<script>
+	e = document.getElementsByClassName('p3');
+	e[0].innerHTML = '<div class="table-contents"><h1>Menu</h1><ul><li><a href="#page/5">Esoteric Contact Details <span>1</span></a></li><li><a href="#page/6">Esoteric Tidbits <span>2</span></a></li><li><a href="#page/7">Esoteric Library <span>3</span></a></li><li><a href="#page/8">Esoteric Subscriptions <span>4</span></a></li><li><a href="#page/9">Esoteric Blog <span>5</span></a></li><li><a href="#page/10">Esoteric Queries <span>6</span></a></li></ul></div><span class="page-number">5</span>';
+
+
+	
+
+
+</script>
+
+</body>
+</html>

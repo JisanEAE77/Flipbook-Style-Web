@@ -1,0 +1,21 @@
+{% extends 'accounts/base.html' %}
+{% block body %}
+    <table class="table table-light text-center">
+  <thead>
+    <tr>
+      <th scope="col">Thumbnail</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Action</th> 
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <th><img src="/media/{{book.thumbnail}}" style="width:150px;height:150px;"></th>
+      <td>{{book.name}}</td>
+      <td><a href="/wishlist/{{book.id}}/addcart"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add to cart</button></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

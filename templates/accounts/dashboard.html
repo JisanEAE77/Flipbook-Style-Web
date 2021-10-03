@@ -1,0 +1,32 @@
+{% extends 'accounts/base.html' %}
+{% block body %}
+
+    <table class="table table-dark text-center">
+  <thead>
+    <tr>
+      <th scope="col" colspan="2">Esoteric Management</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <th><a href="/#page/7" class="text-white">Books</a></th>
+      <td><a href="/admin/bookstore/book/add/" class="text-warning">Add Book +</a></td>
+
+    </tr>
+    <tr>
+      <th><a href="/#page/9" class="text-white">Blog</a></th>
+      <td><a href="/admin/bookstore/blog/add/" class="text-warning">Add Post +</a></td>
+
+    </tr>
+    <tr>
+      <th><a href="/#page/8" class="text-white">Subscriptions</a></th>
+      <td><a href="/admin/bookstore/subscription/add/" class="text-warning">Add Subscription +</a></td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+{% endblock %}

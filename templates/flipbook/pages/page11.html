@@ -1,0 +1,65 @@
+{% if request.user.is_authenticated %}
+<h3 style="text-align: center; margin-top: 50px;">Esoteric Shop</h3>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<div style="margin: 0px 50px; height: 80%; overflow-y: scroll; padding-top: 10px; padding-bottom: 10px; text-align: center; display: flex; flex-wrap: wrap; justify-content: center;">
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Cart</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Wishlist</button>
+
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent" style="width: 100%;">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <table class="table table-light text-center">
+  <thead>
+    <tr>
+      <th scope="col">Thumbnail</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <th><img src="/media/{{book.thumbnail}}" style="width:80px;height:80px;"></th>
+      <td>{{book.name}}</td>
+      <td>${{book.price}}</td>
+      <td><a href="/cart/{{book.id}}/remove"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">&times;</button></a></td>
+    </tr>
+    
+    {% endfor %}
+    <tr>
+      <td colspan="4">Total = ${{total}}</td>
+    </tr
+    <tr>
+      <td colspan="4"><a href="#"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Checkout</button></a></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">.
+            <table class="table table-light text-center">
+  <thead>
+    <tr>
+      <th scope="col">Thumbnail</th>
+      <th scope="col">Book Name</th>
+      <th scope="col"></th> 
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books2 %}
+    <tr>
+      <th><img src="/media/{{book.thumbnail}}" style="width:80px;height:80px;"></th>
+      <td>{{book.name}}</td>
+      <td><a href="/wishlist/{{book.id}}/addcart"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add to cart</button></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  </div>
+
+</div>
+</div>
+{% endif %}

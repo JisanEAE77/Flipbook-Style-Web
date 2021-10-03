@@ -1,0 +1,32 @@
+
+<h3 style="text-align: center; margin: 50px 0px 0px 0px;">Esoteric Blog</h3>
+<div style="margin: 0px 50px; height: 80%; overflow-y: scroll; padding-top: 10px; padding-bottom: 10px; text-align: center; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+<div style="padding-top: 10px; padding-bottom: 10px; text-align: center; display: flex; flex-wrap: wrap; justify-content: center;">
+
+{% for blog in blogs %}
+
+<div class="flip-card" class="mb-4" type="button" class="btn btn-warning mb-3" data-toggle="modal" data-target="#exampleModal{{blog.id}}">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="/media/{{blog.thumbnail}}" alt="Avatar" style="width:150px;height:150px;">
+    </div>
+    <div class="flip-card-back" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5px;">
+      <h6>{{blog.title}}</h6> 
+      <p>{{blog.time}}</p> 
+    </div>
+  </div>
+</div>
+
+
+
+{% endfor %}
+
+
+
+</div>
+{% if n == 20 %}
+<div>
+  <a href="/blog"><button class="btn btn-success" >See More</button></a>
+</div>
+{% endif %}
+</div>

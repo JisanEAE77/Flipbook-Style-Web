@@ -1,0 +1,135 @@
+{% if not request.user.is_authenticated %}
+<div class="book-content contact">
+
+<!--Section: Contact v.2-->
+<section class="mb-4">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">User Login</h2>
+    <!--Section description-->
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-12 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                {{ field.errors }}
+                    <div class="form-group" style="text-align:center">
+                        
+                        {{ field.label_tag }} <br> {{ field }} <br>
+                    </div>
+
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-md-12">
+                        {{ field.errors }}
+                            <div class="md-form mb-0">
+                            <label for="name" class="">{{ field.label_tag }}</label><br>
+                                {{ field }}
+                                
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+                {% endfor %}
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                        <label for="name" class="">Username:</label>
+                            <input type="text" id="name" name="name" class="form-control">
+                            
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                        <label for="subject" class="">Password:</label>
+                            <input type="text" id="subject" name="subject" class="form-control">
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+
+
+            </form>
+
+            <div class="text-center text-md-left mt-4">
+                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Login</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+
+
+    </div>
+
+</section>
+<!--Section: Contact v.2-->
+
+<!--Section: Contact v.2-->
+<section class="mb-4">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">User Registration</h2>
+    <!--Section description-->
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-12 mb-md-0 mb-5">
+            <form id="contact-form2" name="contact-form2" method="POST" action="/pages/page11/">
+                {% csrf_token %}
+                {% for field in form1 %}
+                    <div class="form-group" style="text-align:center">
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                                <div class="md-form mb-0">
+                                {{ field.errors }}
+                                <label for="name" class="">{{ field.label_tag }}</label><br>
+                                    {{ field }}
+                                    
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                <!--Grid row-->
+                    </div>
+                {% endfor %}
+               
+
+            </form>
+
+            <div class="text-center text-md-left mt-4">
+                <a class="btn btn-primary" onclick="document.getElementById('contact-form2').submit();">Sign Up</a>
+            </div>
+            <div class="status"></div>
+        </div>
+        <!--Grid column-->
+
+
+    </div>
+
+</section>
+<!--Section: Contact v.2-->
+
+</div>
+
+{% endif %}

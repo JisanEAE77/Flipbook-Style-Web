@@ -1,0 +1,30 @@
+<h3 style="text-align: center; margin-top: 50px;">Esoteric Subscriptions</h3>
+<div style="margin: 0px 50px; height: 80%; overflow-y: scroll; padding-top: 10px; padding-bottom: 10px; text-align: center; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+
+<section class="pricing">
+  <div class="container">
+    <div class="">
+      <!-- Free Tier -->
+      {% for sub in subs %}
+      <div class="mb-5">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">{{sub.plan_name}}</h5>
+            <h6 class="card-price text-center">${{sub.price}}<span class="period">/{{sub.per}}</span></h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>{{sub.description}}</li>
+            </ul>
+            <a href="#" class="btn btn-block btn-warning text-uppercase">Subscribe</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+
+
+</div>
